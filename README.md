@@ -48,3 +48,9 @@ curl --location 'localhost:8080/get-b?field_a=A&field_b=B'
 ```sh
 curl --location 'localhost:8080/get-c?field_a=A&field_c=C'
 ```
+
+- Get D
+
+```sh
+curl --location 'localhost:8080/get-d?field_x=X&field_d=D'
+```
