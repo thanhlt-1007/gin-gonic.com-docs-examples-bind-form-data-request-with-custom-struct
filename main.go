@@ -10,8 +10,13 @@ type StructA struct {
 }
 
 type StructB struct {
-    NestedStruct StructA
+    NestedStructA StructA
     FieldB string `form:"field_b"`
+}
+
+type StructC struct {
+    NestedStructA *StructA
+    FieldC string `form:"field_c"`
 }
 
 func getRoot(context *gin.Context) {
@@ -40,17 +45,31 @@ func getB(context *gin.Context) {
     context.JSON(
         http.StatusOK,
         gin.H{
-            "a": b.NestedStruct,
+            "a": b.NestedStructA,
             "b": b.FieldB,
+        },
+    )
+}
+
+func getC(context *gin.Context) {
+    var c StructC
+    context.Bind(&c)
+    context.JSON(
+        http.StatusOK,
+        gin.H {
+            "a": c.NestedStructA,
+            "c": c.FieldC,
         },
     )
 }
 
 func main() {
     router := gin.Default()
+
     router.GET("/", getRoot)
     router.GET("/get-a", getA)
     router.GET("/get-b", getB)
+    router.GET("/get-c", getC)
 
     router.Run(":8080")
 }
