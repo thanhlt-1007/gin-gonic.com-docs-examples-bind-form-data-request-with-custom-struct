@@ -10,3 +10,29 @@
 gvm install go1.23.5
 gvm use go1.23.5
 ```
+
+## go mod
+
+```sh
+go mod download
+```
+
+## go run
+
+```sh
+go run .
+```
+
+## curl
+
+- root
+
+```sh
+curl --location 'localhost:8080'
+```
+
+- Get A
+
+```sh
+curl --location 'localhost:8080/get-b?field_a=A&field_b=B'
+```
