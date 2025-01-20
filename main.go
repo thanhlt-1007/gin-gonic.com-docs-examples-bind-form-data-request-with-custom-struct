@@ -23,6 +23,17 @@ func getRoot(context *gin.Context) {
     )
 }
 
+func getA(context *gin.Context) {
+    var a StructA
+    context.Bind(&a)
+    context.JSON(
+        http.StatusOK,
+        gin.H{
+            "a": a.FieldA,
+        },
+    )
+}
+
 func getB(context *gin.Context) {
     var b StructB
     context.Bind(&b)
@@ -38,6 +49,7 @@ func getB(context *gin.Context) {
 func main() {
     router := gin.Default()
     router.GET("/", getRoot)
+    router.GET("/get-a", getA)
     router.GET("/get-b", getB)
 
     router.Run(":8080")
